@@ -9,10 +9,10 @@ namespace BerlinClock
         protected int value;
         protected LightColor color;
 
-        public LampsRow(int max, Func<int> p, LightColor color)
+        public LampsRow(int max, Func<int> value, LightColor color)
         {
             this.max = max;
-            this.value = p();
+            this.value = value();
             this.color = color;
         }
 
