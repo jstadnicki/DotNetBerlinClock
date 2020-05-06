@@ -18,7 +18,7 @@ namespace BerlinClock
             var stringBuilder = new StringBuilder();
             for (int i = 0; i < Hour; i++)
             {
-                stringBuilder.Append(this.Color.Encode());
+                stringBuilder.Append(this.Color.GetDescription());
             }
 
             for (int i = 4; i > Hour; i--)

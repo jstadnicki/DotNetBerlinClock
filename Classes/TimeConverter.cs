@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -39,13 +40,20 @@ namespace BerlinClock
 
     public enum LightColor
     {
+        [Description("O")]
         None,
+        [Description("R")]
         Red,
+        [Description("Y")]
         Yellow
     }
 
     public static class LightColorExtensions
     {
-        public static string Encode(this LightColor color) => color.ToString()[0].ToString();
+        public static string GetDescription(this LightColor color)
+        {
+            var attributes = color.GetType().GetField(color.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false);
+            return (attributes[0] as DescriptionAttribute).Description;
+        }
     }
 }
