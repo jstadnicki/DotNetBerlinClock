@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BerlinClock
@@ -8,7 +10,6 @@ namespace BerlinClock
         public string ConvertTime(string time)
         {
             var dateTime = this.Parse(time);
-            var stringBuilder = new StringBuilder();
 
             var secRow = new SecondsLampRow(2, () => dateTime.Seconds % 2, LightColor.Yellow);
 
@@ -18,14 +19,15 @@ namespace BerlinClock
             var m1Row = new MinutesLampsRow(11, () => dateTime.Minutes / 5, LightColor.None);
             var m2Row = new LampsRow(4, () => dateTime.Minutes % 5, LightColor.Yellow);
 
+            var berlinClock = new List<LampsRow>();
+            berlinClock.Add(secRow);
+            berlinClock.Add(h1Row);
+            berlinClock.Add(h2Row);
+            berlinClock.Add(m1Row);
+            berlinClock.Add(m2Row);
 
-            stringBuilder.AppendLine(secRow.ToString());
-            stringBuilder.AppendLine(h1Row.ToString());
-            stringBuilder.AppendLine(h2Row.ToString());
-            stringBuilder.AppendLine(m1Row.ToString());
-            stringBuilder.Append(m2Row.ToString());
-
-            return stringBuilder.ToString();
+            var result = string.Join(Environment.NewLine, berlinClock.Select(bc => bc.ToString()));
+            return result;
         }
 
         private BerlinTimeSpan Parse(string time)
