@@ -4,12 +4,14 @@ namespace BerlinClock
 {
     public class M5LampsRow
     {
-        public M5LampsRow(BerlinTimeSpan timespan)
+        public M5LampsRow(BerlinTimeSpan timespan, LightColor color)
         {
             this.Minutes = timespan.Minutes / 5;
+            this.Color = color;
         }
 
         public int Minutes { get; }
+        public LightColor Color { get; }
 
         public override string ToString()
         {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 
 namespace BerlinClock
@@ -13,11 +14,11 @@ namespace BerlinClock
 
             var stringBuilder = new StringBuilder();
 
-            var h1Row = new H5LampsRow(dateTime);
-            var h2Row = new H1LampsRow(dateTime);
+            var h1Row = new H5LampsRow(dateTime, LightColor.Red);
+            var h2Row = new H1LampsRow(dateTime, LightColor.Red);
 
-            var m1Row = new M5LampsRow(dateTime);
-            var m2Row = new M1LampsRow(dateTime);
+            var m1Row = new M5LampsRow(dateTime, LightColor.Yellow);
+            var m2Row = new M1LampsRow(dateTime, LightColor.Yellow);
 
 
             stringBuilder.AppendLine(sLamp == 0 ? "Y" : "O");
@@ -34,5 +35,17 @@ namespace BerlinClock
             var sections = time.Split(new[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
             return new BerlinTimeSpan(int.Parse(sections[0]), int.Parse(sections[1]), int.Parse(sections[2]));
         }
+    }
+
+    public enum LightColor
+    {
+        None,
+        Red,
+        Yellow
+    }
+
+    public static class LightColorExtensions
+    {
+        public static string Encode(this LightColor color) => color.ToString()[0].ToString();
     }
 }

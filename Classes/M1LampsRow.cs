@@ -1,27 +1,28 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 namespace BerlinClock
 {
-    public class H1LampsRow
+    public class M1LampsRow
     {
-        public H1LampsRow(BerlinTimeSpan timespan, LightColor color)
+        public M1LampsRow(BerlinTimeSpan timespan, LightColor color)
         {
-            this.Hour = timespan.Hours % 5;
+            this.Minutes = timespan.Minutes % 5;
             this.Color = color;
         }
 
-        public int Hour { get; private set; }
+        public int Minutes { get; private set; }
         public LightColor Color { get; }
 
         public override string ToString()
         {
             var stringBuilder = new StringBuilder();
-            for (int i = 0; i < Hour; i++)
+            for (int i = 0; i < Minutes; i++)
             {
                 stringBuilder.Append(this.Color.Encode());
             }
 
-            for (int i = 4; i > Hour; i--)
+            for (int i = 4; i > Minutes; i--)
             {
                 stringBuilder.Append("O");
             }
