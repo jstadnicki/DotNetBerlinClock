@@ -1,6 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Linq;
 using System.Text;
 
 namespace BerlinClock
@@ -10,19 +8,18 @@ namespace BerlinClock
         public string ConvertTime(string time)
         {
             var dateTime = this.Parse(time);
-
-            var sLamp = dateTime.Seconds % 2;
-
             var stringBuilder = new StringBuilder();
 
-            var h1Row = new H5LampsRow(dateTime, LightColor.Red);
-            var h2Row = new H1LampsRow(dateTime, LightColor.Red);
+            var secRow = new SecondsLampRow(2, () => dateTime.Seconds % 2, LightColor.Yellow);
 
-            var m1Row = new M5LampsRow(dateTime, LightColor.Yellow);
-            var m2Row = new M1LampsRow(dateTime, LightColor.Yellow);
+            var h1Row = new LampsRow(4, () => dateTime.Hours / 5, LightColor.Red);
+            var h2Row = new LampsRow(4, () => dateTime.Hours % 5, LightColor.Red);
+
+            var m1Row = new MinutesLampsRow(11, () => dateTime.Minutes / 5, LightColor.None);
+            var m2Row = new LampsRow(4, () => dateTime.Minutes % 5, LightColor.Yellow);
 
 
-            stringBuilder.AppendLine(sLamp == 0 ? "Y" : "O");
+            stringBuilder.AppendLine(secRow.ToString());
             stringBuilder.AppendLine(h1Row.ToString());
             stringBuilder.AppendLine(h2Row.ToString());
             stringBuilder.AppendLine(m1Row.ToString());
@@ -35,25 +32,6 @@ namespace BerlinClock
         {
             var sections = time.Split(new[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
             return new BerlinTimeSpan(int.Parse(sections[0]), int.Parse(sections[1]), int.Parse(sections[2]));
-        }
-    }
-
-    public enum LightColor
-    {
-        [Description("O")]
-        None,
-        [Description("R")]
-        Red,
-        [Description("Y")]
-        Yellow
-    }
-
-    public static class LightColorExtensions
-    {
-        public static string GetDescription(this LightColor color)
-        {
-            var attributes = color.GetType().GetField(color.ToString()).GetCustomAttributes(typeof(DescriptionAttribute), false);
-            return (attributes[0] as DescriptionAttribute).Description;
         }
     }
 }
