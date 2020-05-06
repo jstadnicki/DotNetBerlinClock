@@ -6,6 +6,11 @@ namespace BerlinClock
     {
         public string ConvertTime(string time)
         {
+            if (string.IsNullOrWhiteSpace(time))
+            {
+                throw new ArgumentNullException(nameof(time));
+            }
+
             var dateTime = this.Parse(time);
 
             var clock = new BerlinUhr(dateTime);
