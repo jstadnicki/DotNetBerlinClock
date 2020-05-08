@@ -57,8 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BDD\BerlinClockFeatureSteps.cs" />
+    <Compile Include="Classes\AMPMTo24hConverter.cs" />
     <Compile Include="Classes\BerlinTimeSpan.cs" />
     <Compile Include="Classes\BerlinUhr.cs" />
+    <Compile Include="Classes\BerlinUhrTimeSpanConverter.cs" />
     <Compile Include="Classes\LampsRow.cs" />
     <Compile Include="Classes\LightColor.cs" />
     <Compile Include="Classes\LightColorExtensions.cs" />
@@ -72,7 +74,9 @@
     </Compile>
     <Compile Include="Classes\ITimeConverter.cs" />
     <Compile Include="Classes\TimeConverter.cs" />
+    <Compile Include="UnitTesting\AMPMTo24hConverterTests.cs" />
     <Compile Include="UnitTesting\BerlinUhrTimeSpanConverterTests.cs" />
+    <Compile Include="UnitTesting\TimeConverterTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -17,4 +17,5 @@ namespace BerlinClock.UnitTesting
             Assert.Throws<ArgumentOutOfRangeException>(() => BerlinUhrTimeSpanConverter.Parse("2:10:4568"));
         }
     }
+
 }
