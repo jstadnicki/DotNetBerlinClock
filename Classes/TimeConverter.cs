@@ -14,7 +14,7 @@ namespace BerlinClock
             var dateTime = BerlinUhrTimeSpanConverter.Parse(time);
 
             var clock = new BerlinUhr(dateTime);
-            
+
             return clock.ToString();
         }
     }
@@ -25,7 +25,28 @@ namespace BerlinClock
         public static BerlinTimeSpan Parse(string time)
         {
             var sections = time.Split(new[] { ":" }, StringSplitOptions.RemoveEmptyEntries);
-            return new BerlinTimeSpan(int.Parse(sections[0]), int.Parse(sections[1]), int.Parse(sections[2]));
+            var hours = int.Parse(sections[0]);
+            var minutes = int.Parse(sections[1]);
+            var seconds = int.Parse(sections[2]);
+
+            if (hours < 0 || hours > 24)
+            {
+                throw new ArgumentOutOfRangeException(nameof(hours));
+            }
+
+            if (minutes < 0 || minutes > 60)
+            {
+                throw new ArgumentOutOfRangeException(nameof(minutes));
+            }
+
+            if (seconds < 0 || seconds > 60)
+            {
+                throw new ArgumentOutOfRangeException(nameof(seconds));
+            }
+
+
+
+            return new BerlinTimeSpan(hours, minutes, seconds);
         }
     }
 }
