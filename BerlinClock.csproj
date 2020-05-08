@@ -55,9 +55,8 @@
     <Compile Include="Classes\LampsRow.cs" />
     <Compile Include="Classes\LightColor.cs" />
     <Compile Include="Classes\LightColorExtensions.cs" />
-    <Compile Include="Classes\MinutesLampsRow.cs" />
+    <Compile Include="Classes\QuarterWithMinutesLampsRow.cs" />
     <Compile Include="Classes\SecondsLampRow.cs" />
-    <Compile Include="Classes\SecondsRow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BDD\BerlinClockFeatureSteps.feature.cs">
       <AutoGen>True</AutoGen>

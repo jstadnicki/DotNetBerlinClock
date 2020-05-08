@@ -3,9 +3,9 @@ using System.Text;
 
 namespace BerlinClock
 {
-    internal class MinutesLampsRow : LampsRow
+    internal class QuarterWithMinutesLampsRow : LampsRow
     {
-        public MinutesLampsRow(int max, Func<int> value, LightColor _) : base(max, value, _)
+        public QuarterWithMinutesLampsRow(int max, Func<int> value, LightColor _) : base(max, value, _)
         { }
 
         public override string ToString()

@@ -15,7 +15,7 @@ namespace BerlinClock
             var bigHoursRow = new LampsRow(4, () => dateTime.Hours / 5, LightColor.Red);
             var smallHoursRow = new LampsRow(4, () => dateTime.Hours % 5, LightColor.Red);
 
-            var bigMinutesRow = new MinutesLampsRow(11, () => dateTime.Minutes / 5, LightColor.None);
+            var bigMinutesRow = new QuarterWithMinutesLampsRow(11, () => dateTime.Minutes / 5, LightColor.None);
             var smallMinutesRow = new LampsRow(4, () => dateTime.Minutes % 5, LightColor.Yellow);
 
             this.berlinClock = new List<LampsRow>();
